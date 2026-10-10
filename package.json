@@ -1,23 +1,32 @@
+cat > package.json << 'EOF'
 {
+  "name": "ngimbi-business-trading",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
     "clsx": "^2.1.1",
-    "framer-motion": "^14.1.0",
-    "lucide-react": "^1.55.0",
-    "next": "16.4.0",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
-    "tailwind-merge": "^3.7.0",
-    "tailwindcss": "^4",
-    "@tailwindcss/postcss": "^4"
+    "framer-motion": "^11.15.0",
+    "lucide-react": "^0.469.0",
+    "next": "^15.1.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.4.0",
-    "prettier": "^3.9.10",
-    "prettier-plugin-tailwindcss": "^0.8.1",
-    "typescript": "^5"
+    "@tailwindcss/postcss": "4.0.7",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "eslint": "^9.18.0",
+    "eslint-config-next": "^15.1.3",
+    "tailwindcss": "4.0.7",
+    "typescript": "^5.7.2"
   }
 }
+EOF
