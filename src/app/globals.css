@@ -1,26 +1,184 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ────────────────────────────────────────────────────────────────
+   DESIGN TOKENS (Tailwind v4 : tout se déclare ici via @theme)
+   Chaque token génère automatiquement les utilitaires :
+   --color-brand-500  →  bg-brand-500, text-brand-500, border-brand-500…
+   --font-display     →  font-display
+   --shadow-soft      →  shadow-soft
+   --animate-float    →  animate-float
+   ──────────────────────────────────────────────────────────────── */
+@theme {
+  /* -------- Fonts (variables injectées par next/font) -------- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* -------- Palette de marque : Warm Earth / Bronze / Café -------- */
+  --color-brand-50:  #faf6f2;
+  --color-brand-100: #f2e9e0;
+  --color-brand-200: #e4d2c2;
+  --color-brand-300: #cfae94;
+  --color-brand-400: #b88565;
+  --color-brand-500: #a06648;
+  --color-brand-600: #8a5238;
+  --color-brand-700: #6f412f;
+  --color-brand-800: #4a3b32;   /* café d'affaires */
+  --color-brand-900: #3b2f2f;   /* brun profond */
+  --color-brand-950: #241c1a;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* -------- Couleurs sémantiques -------- */
+  --color-surface:        #fafaf9;  /* stone-50  */
+  --color-surface-alt:    #f5f5f4;  /* stone-100 */
+  --color-surface-dark:   #1c1917;  /* stone-900 */
+  --color-border-soft:    rgb(74 59 50 / 0.10);
+  --color-border-softer:  rgb(74 59 50 / 0.06);
+
+  /* -------- Ombres portées douces -------- */
+  --shadow-soft:    0 10px 40px -12px rgb(59 47 47 / 0.18);
+  --shadow-soft-lg: 0 24px 70px -20px rgb(59 47 47 / 0.30);
+  --shadow-glow:    0 0 0 1px rgb(217 119 6 / 0.25),
+                    0 18px 50px -18px rgb(217 119 6 / 0.45);
+
+  /* -------- Rayons (facultatif, valeurs par défaut déjà bonnes) -------- */
+  --radius-4xl: 2rem;
+
+  /* -------- Animations custom -------- */
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+  --animate-float:   float 6s ease-in-out infinite;
+
+  /* -------- Keyframes (déclarées dans @theme en v4) -------- */
+  @keyframes fade-up {
+    0%   { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ────────────────────────────────────────────────────────────────
+   BASE LAYER
+   ──────────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-stone-50 text-stone-800 antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  ::selection {
+    @apply bg-amber-500/30 text-stone-900;
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { @apply bg-stone-100; }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-stone-400/60;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-amber-700/70;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   COMPOSANTS RÉUTILISABLES (via @layer components)
+   ──────────────────────────────────────────────────────────────── */
+@layer components {
+  .nbt-container {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .nbt-eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full
+           border border-amber-900/15 bg-amber-500/10
+           px-3.5 py-1.5
+           text-[11px] font-bold uppercase tracking-[0.22em] text-amber-800;
+  }
+
+  .nbt-card {
+    @apply rounded-3xl border border-amber-900/10 bg-white/80
+           shadow-soft backdrop-blur-sm;
+  }
+
+  .nbt-btn {
+    @apply inline-flex items-center justify-center gap-2
+           rounded-full px-6 py-3.5
+           text-sm font-bold tracking-tight
+           transition-all duration-300
+           focus:outline-none
+           focus-visible:ring-2 focus-visible:ring-amber-500/60
+           focus-visible:ring-offset-2;
+  }
+
+  .nbt-btn-primary {
+    @apply nbt-btn
+           bg-gradient-to-br from-amber-600 to-amber-800 text-amber-50
+           shadow-glow
+           hover:-translate-y-0.5 hover:from-amber-500 hover:to-amber-700
+           active:translate-y-0;
+  }
+
+  .nbt-btn-ghost {
+    @apply nbt-btn
+           border border-stone-900/15 bg-white/70 text-stone-800
+           hover:-translate-y-0.5 hover:border-amber-900/30 hover:bg-white;
+  }
+
+  .nbt-input {
+    @apply w-full rounded-2xl
+           border border-amber-900/15 bg-white/90
+           px-4 py-3.5
+           text-sm text-stone-800 placeholder-stone-400
+           shadow-sm outline-none
+           transition-all
+           focus:border-amber-600/60
+           focus:ring-4 focus:ring-amber-500/15;
+  }
+
+  .nbt-label {
+    @apply mb-2 block
+           text-xs font-bold uppercase tracking-[0.14em] text-stone-600;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   UTILITAIRES CUSTOM (via @utility — nouveau en v4)
+   ──────────────────────────────────────────────────────────────── */
+
+/* Wrapper équivalent de text-wrap: balance (support progressif) */
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* Motif grille clair (pour sections bg-clair) */
+@utility grid-pattern {
+  background-image:
+    linear-gradient(to right, rgb(74 59 50 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(74 59 50 / 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Motif grille sombre (pour sections bg-sombre) */
+@utility grid-pattern-dark {
+  background-image:
+    linear-gradient(to right, rgb(245 235 220 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(245 235 220 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Fade doux en bas (masques CSS) */
+@utility mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
