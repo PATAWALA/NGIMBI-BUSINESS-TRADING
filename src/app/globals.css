@@ -27,11 +27,11 @@
   --color-brand-950: #241c1a;
 
   /* -------- Couleurs sémantiques -------- */
-  --color-surface:        #fafaf9;  /* stone-50  */
-  --color-surface-alt:    #f5f5f4;  /* stone-100 */
-  --color-surface-dark:   #1c1917;  /* stone-900 */
-  --color-border-soft:    rgb(74 59 50 / 0.10);
-  --color-border-softer:  rgb(74 59 50 / 0.06);
+  --color-surface:       #fafaf9;
+  --color-surface-alt:   #f5f5f4;
+  --color-surface-dark:  #1c1917;
+  --color-border-soft:   rgb(74 59 50 / 0.10);
+  --color-border-softer: rgb(74 59 50 / 0.06);
 
   /* -------- Ombres portées douces -------- */
   --shadow-soft:    0 10px 40px -12px rgb(59 47 47 / 0.18);
@@ -39,7 +39,7 @@
   --shadow-glow:    0 0 0 1px rgb(217 119 6 / 0.25),
                     0 18px 50px -18px rgb(217 119 6 / 0.45);
 
-  /* -------- Rayons (facultatif, valeurs par défaut déjà bonnes) -------- */
+  /* -------- Rayons personnalisés -------- */
   --radius-4xl: 2rem;
 
   /* -------- Animations custom -------- */
@@ -93,7 +93,7 @@
 }
 
 /* ────────────────────────────────────────────────────────────────
-   COMPOSANTS RÉUTILISABLES (via @layer components)
+   COMPOSANTS RÉUTILISABLES
    ──────────────────────────────────────────────────────────────── */
 @layer components {
   .nbt-container {
@@ -154,13 +154,14 @@
 }
 
 /* ────────────────────────────────────────────────────────────────
-   UTILITAIRES CUSTOM (via @utility — nouveau en v4)
-   ──────────────────────────────────────────────────────────────── */
+   UTILITAIRES CUSTOM (via @utility — Tailwind v4)
 
-/* Wrapper équivalent de text-wrap: balance (support progressif) */
-@utility text-balance {
-  text-wrap: balance;
-}
+   ⚠️  RÈGLE : ne JAMAIS utiliser un préfixe réservé par Tailwind.
+       Préfixes réservés à éviter :
+         mask-*, ring-*, shadow-*, text-*, bg-*, border-*, font-*,
+         animate-*, translate-*, scale-*, rotate-*, blur-*, filter-*
+       → Toujours préfixer par `nbt-` pour être safe.
+   ──────────────────────────────────────────────────────────────── */
 
 /* Motif grille clair (pour sections bg-clair) */
 @utility grid-pattern {
@@ -178,7 +179,7 @@
   background-size: 56px 56px;
 }
 
-/* Fade doux en bas (masques CSS) */
-@utility mask-fade-b {
+/* Fade doux en bas — préfixé nbt- pour éviter le conflit avec mask-* natif */
+@utility nbt-fade-b {
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
