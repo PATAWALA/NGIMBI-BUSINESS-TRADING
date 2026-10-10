@@ -2,18 +2,13 @@
 
 /* ────────────────────────────────────────────────────────────────
    DESIGN TOKENS (Tailwind v4 : tout se déclare ici via @theme)
-   Chaque token génère automatiquement les utilitaires :
-   --color-brand-500  →  bg-brand-500, text-brand-500, border-brand-500…
-   --font-display     →  font-display
-   --shadow-soft      →  shadow-soft
-   --animate-float    →  animate-float
    ──────────────────────────────────────────────────────────────── */
 @theme {
-  /* -------- Fonts (variables injectées par next/font) -------- */
+  /* -------- Fonts -------- */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 
-  /* -------- Palette de marque : Warm Earth / Bronze / Café -------- */
+  /* -------- Palette de marque -------- */
   --color-brand-50:  #faf6f2;
   --color-brand-100: #f2e9e0;
   --color-brand-200: #e4d2c2;
@@ -22,8 +17,8 @@
   --color-brand-500: #a06648;
   --color-brand-600: #8a5238;
   --color-brand-700: #6f412f;
-  --color-brand-800: #4a3b32;   /* café d'affaires */
-  --color-brand-900: #3b2f2f;   /* brun profond */
+  --color-brand-800: #4a3b32;
+  --color-brand-900: #3b2f2f;
   --color-brand-950: #241c1a;
 
   /* -------- Couleurs sémantiques -------- */
@@ -47,7 +42,7 @@
   --animate-shimmer: shimmer 2.4s linear infinite;
   --animate-float:   float 6s ease-in-out infinite;
 
-  /* -------- Keyframes (déclarées dans @theme en v4) -------- */
+  /* -------- Keyframes -------- */
   @keyframes fade-up {
     0%   { opacity: 0; transform: translateY(16px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -156,14 +151,13 @@
 /* ────────────────────────────────────────────────────────────────
    UTILITAIRES CUSTOM (via @utility — Tailwind v4)
 
-   ⚠️  RÈGLE : ne JAMAIS utiliser un préfixe réservé par Tailwind.
-       Préfixes réservés à éviter :
-         mask-*, ring-*, shadow-*, text-*, bg-*, border-*, font-*,
-         animate-*, translate-*, scale-*, rotate-*, blur-*, filter-*
-       → Toujours préfixer par `nbt-` pour être safe.
+   ⚠️  NE PAS redéfinir une propriété déjà couverte par un utilitaire
+       natif Tailwind (mask-*, shadow-*, text-*, bg-*, border-*,
+       font-*, animate-*, translate-*, scale-*, rotate-*, blur-*,
+       filter-*, backdrop-*…) → ça casse le build.
    ──────────────────────────────────────────────────────────────── */
 
-/* Motif grille clair (pour sections bg-clair) */
+/* Motif grille clair */
 @utility grid-pattern {
   background-image:
     linear-gradient(to right, rgb(74 59 50 / 0.06) 1px, transparent 1px),
@@ -171,7 +165,7 @@
   background-size: 56px 56px;
 }
 
-/* Motif grille sombre (pour sections bg-sombre) */
+/* Motif grille sombre */
 @utility grid-pattern-dark {
   background-image:
     linear-gradient(to right, rgb(245 235 220 / 0.05) 1px, transparent 1px),
@@ -179,7 +173,10 @@
   background-size: 56px 56px;
 }
 
-/* Fade doux en bas — préfixé nbt- pour éviter le conflit avec mask-* natif */
-@utility nbt-fade-b {
-  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-}
+/* ⛔ SUPPRIMÉ : @utility nbt-fade-b — conflit avec les utilitaires
+   mask-* natifs de Tailwind v4.1.
+   ➜ Si tu as besoin d'un fade bas, utilise directement :
+        className="mask-b-from-60% mask-b-to-transparent"
+   ou en classe arbitraire :
+        className="[mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]"
+*/

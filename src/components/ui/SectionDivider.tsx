@@ -3,31 +3,20 @@ import { cn } from "@/lib/utils";
 type DividerVariant = "slant" | "wave" | "curve" | "zigzag";
 
 const PATHS: Record<DividerVariant, string> = {
-  /* Angle oblique asymétrique */
   slant: "M0,72 L1440,0 L1440,120 L0,120 Z",
-  /* Vague douce */
   wave: "M0,32 C240,96 480,0 720,32 C960,64 1200,112 1440,56 L1440,120 L0,120 Z",
-  /* Courbe élégante */
   curve: "M0,120 C360,24 1080,24 1440,120 Z",
-  /* Zigzag industriel */
   zigzag:
     "M0,84 L240,44 L480,84 L720,44 L960,84 L1200,44 L1440,84 L1440,120 L0,120 Z",
 };
 
 interface SectionDividerProps {
   variant?: DividerVariant;
-  /** Couleur de remplissage = couleur de la section SUIVANTE (ex: "text-stone-900") */
   className?: string;
   flip?: boolean;
   height?: string;
 }
 
-/**
- * Séparateur de section en SVG.
- * Casse l'aspect "boîtes droites" en créant une transition fluide entre sections.
- *
- * ⚠️ La section parente doit être `relative` et avoir un `padding-bottom` suffisant.
- */
 export default function SectionDivider({
   variant = "slant",
   className,

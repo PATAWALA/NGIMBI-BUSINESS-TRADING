@@ -49,7 +49,6 @@ export default function SourcingForm() {
   const [copied, setCopied] = useState(false);
   const [brief, setBrief] = useState<string | null>(null);
 
-  /* ---------- Écoute du pré-remplissage depuis le catalogue ---------- */
   useEffect(() => {
     function onPrefill(event: Event) {
       const detail = (event as CustomEvent<PrefillDetail>).detail;
@@ -71,7 +70,6 @@ export default function SourcingForm() {
     return () => window.removeEventListener(PREFILL_EVENT, onPrefill);
   }, []);
 
-  /* ---------- Helpers ---------- */
   function update<K extends keyof SourcingFormState>(
     key: K,
     value: SourcingFormState[K],
@@ -165,7 +163,6 @@ export default function SourcingForm() {
       <div className="pointer-events-none absolute -left-40 top-40 h-96 w-96 rounded-full bg-amber-600/10 blur-[120px]" />
 
       <div className="nbt-container relative">
-        {/* ---------- En-tête ---------- */}
         <div className="mx-auto max-w-2xl text-center">
           <span className="nbt-eyebrow">
             <Sparkles className="h-3 w-3" />
@@ -182,10 +179,8 @@ export default function SourcingForm() {
           </p>
         </div>
 
-        {/* ---------- Carte formulaire ---------- */}
         <div className="mx-auto mt-12 max-w-3xl">
           <div className="overflow-hidden rounded-[2rem] border border-amber-900/10 bg-white/90 shadow-soft-lg backdrop-blur-xl">
-            {/* Progress bar */}
             <div className="h-1.5 w-full bg-stone-200/70">
               <motion.div
                 animate={{ width: `${progress}%` }}
@@ -194,7 +189,6 @@ export default function SourcingForm() {
               />
             </div>
 
-            {/* Stepper */}
             <div className="flex items-center justify-between gap-3 border-b border-amber-900/10 px-6 py-5 md:px-8">
               <div className="flex items-center gap-2 sm:gap-4">
                 {[1, 2, 3].map((n) => (
@@ -228,10 +222,8 @@ export default function SourcingForm() {
               </span>
             </div>
 
-            {/* Contenu */}
             <form onSubmit={handleSubmit} className="p-6 md:p-8">
               <AnimatePresence mode="wait">
-                {/* ============ ÉTAPE 1 ============ */}
                 {step === 1 && (
                   <motion.div
                     key="step1"
@@ -311,7 +303,6 @@ export default function SourcingForm() {
                   </motion.div>
                 )}
 
-                {/* ============ ÉTAPE 2 ============ */}
                 {step === 2 && (
                   <motion.div
                     key="step2"
@@ -327,7 +318,6 @@ export default function SourcingForm() {
                     />
 
                     <div className="mt-6 space-y-5">
-                      {/* Lien */}
                       <div>
                         <label htmlFor="link" className="nbt-label">
                           <span className="inline-flex items-center gap-1.5">
@@ -349,7 +339,6 @@ export default function SourcingForm() {
                         </p>
                       </div>
 
-                      {/* Description */}
                       <div>
                         <label htmlFor="product" className="nbt-label">
                           <span className="inline-flex items-center gap-1.5">
@@ -367,7 +356,6 @@ export default function SourcingForm() {
                         />
                       </div>
 
-                      {/* Quantité + Budget */}
                       <div className="grid gap-5 sm:grid-cols-2">
                         <div>
                           <label htmlFor="quantity" className="nbt-label">
@@ -404,7 +392,6 @@ export default function SourcingForm() {
                   </motion.div>
                 )}
 
-                {/* ============ ÉTAPE 3 ============ */}
                 {step === 3 && (
                   <motion.div
                     key="step3"
@@ -498,7 +485,6 @@ export default function SourcingForm() {
                 )}
               </AnimatePresence>
 
-              {/* ---------- Navigation ---------- */}
               <div className="mt-8 flex items-center justify-between gap-3 border-t border-amber-900/10 pt-6">
                 <button
                   type="button"
@@ -541,7 +527,6 @@ export default function SourcingForm() {
               </div>
             </form>
 
-            {/* ---------- Brief généré ---------- */}
             <AnimatePresence>
               {brief && (
                 <motion.div
@@ -611,8 +596,6 @@ export default function SourcingForm() {
     </section>
   );
 }
-
-/* ------------------------------------------------------------------ */
 
 function FormHeading({
   eyebrow,

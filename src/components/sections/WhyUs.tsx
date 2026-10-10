@@ -7,10 +7,6 @@ import SectionDivider from "@/components/ui/SectionDivider";
 import { STATS, EXTRA_STATS } from "@/lib/data";
 import type { StatItem } from "@/types";
 
-/* ------------------------------------------------------------------ */
-/*  Compteur animé (utilise framer-motion useInView + rAF)            */
-/* ------------------------------------------------------------------ */
-
 function AnimatedCounter({
   value,
   prefix = "",
@@ -35,7 +31,6 @@ function AnimatedCounter({
     const tick = (now: number) => {
       const elapsed = (now - start) / 1000;
       const t = Math.min(elapsed / duration, 1);
-      // ease-out cubic
       const eased = 1 - Math.pow(1 - t, 3);
       setDisplay(Math.round(value * eased));
 
@@ -59,8 +54,6 @@ function AnimatedCounter({
   );
 }
 
-/* ------------------------------------------------------------------ */
-
 function StatCard({ stat, index }: { stat: StatItem; index: number }) {
   const Icon = stat.icon;
 
@@ -76,7 +69,7 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
       }}
       className="group relative overflow-hidden rounded-[1.75rem] border border-amber-500/15 bg-stone-900/60 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-amber-500/40 md:p-7"
     >
-      <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-amber-500/10 blur-3xl transition-opacity duration-500 group-hover:opacity-100 opacity-60" />
+      <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-amber-500/10 blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
 
       <span className="relative grid h-12 w-12 place-items-center rounded-2xl border border-amber-500/25 bg-amber-500/10">
         <Icon className="h-5 w-5 text-amber-400" />
@@ -101,8 +94,6 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-
 export default function WhyUs() {
   return (
     <section
@@ -113,7 +104,6 @@ export default function WhyUs() {
       <div className="pointer-events-none absolute left-1/2 top-10 h-80 w-[44rem] -translate-x-1/2 rounded-full bg-amber-600/15 blur-[130px]" />
 
       <div className="nbt-container relative">
-        {/* ---------- En-tête ---------- */}
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/25 bg-amber-500/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-amber-400">
             <Sparkles className="h-3 w-3" />
@@ -129,14 +119,12 @@ export default function WhyUs() {
           </p>
         </div>
 
-        {/* ---------- Statistiques principales ---------- */}
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {STATS.map((stat, i) => (
             <StatCard key={stat.id} stat={stat} index={i} />
           ))}
         </div>
 
-        {/* ---------- Statistiques secondaires ---------- */}
         <motion.div
           initial={{ opacity: 0, y: 26 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -145,29 +133,19 @@ export default function WhyUs() {
           className="mt-10 overflow-hidden rounded-[1.75rem] border border-amber-500/15 bg-gradient-to-br from-amber-900/30 to-stone-900/40 backdrop-blur-sm"
         >
           <div className="grid divide-y divide-stone-50/10 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
-            {EXTRA_STATS.map((item, i) => {
+            {EXTRA_STATS.map((item) => {
               const Icon = item.icon;
               return (
                 <div
                   key={item.id}
-                  className={[
-                    "flex items-center gap-4 p-6 md:p-7",
-                    i > 0 ? "lg:border-l lg:border-stone-50/10" : "",
-                    i === 2 ? "sm:border-t sm:border-stone-50/10 lg:border-t-0" : "",
-                    i === 3 ? "sm:border-t sm:border-stone-50/10 lg:border-t-0" : "",
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
+                  className="flex items-center gap-4 border-stone-50/10 p-6 md:border-l md:p-7 [&:first-child]:md:border-l-0"
                 >
                   <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-amber-500/10">
-                    <Icon className="h-4.5 w-4.5 text-amber-400" />
+                    <Icon className="h-4 w-4 text-amber-400" />
                   </span>
                   <div className="min-w-0">
                     <p className="font-display text-xl font-extrabold leading-none text-stone-50">
-                      <AnimatedCounter
-                        value={item.value}
-                        suffix={item.suffix}
-                      />
+                      <AnimatedCounter value={item.value} suffix={item.suffix} />
                     </p>
                     <p className="mt-1.5 text-[11.5px] font-semibold uppercase tracking-wider text-stone-400">
                       {item.label}
@@ -179,7 +157,6 @@ export default function WhyUs() {
           </div>
         </motion.div>
 
-        {/* ---------- Points d'engagement ---------- */}
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {[
             {

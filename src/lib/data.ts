@@ -17,10 +17,6 @@ import {
 } from "lucide-react";
 import type { Product, ServiceOption, StatItem } from "@/types";
 
-/* ------------------------------------------------------------------ */
-/*  Identité de marque                                                 */
-/* ------------------------------------------------------------------ */
-
 export const BRAND = {
   name: "NGIMBI BUSINESS TRADING",
   shortName: "NBT",
@@ -29,20 +25,14 @@ export const BRAND = {
   axis: "Chine ➡️ RDC (Kinshasa, Lubumbashi, Goma) & Afrique",
 };
 
-/** ⚠️ Remplace par le vrai numéro WhatsApp business (format international sans +) */
 export const WHATSAPP_NUMBER = "243990000000";
 export const PHONE_DISPLAY = "+243 990 000 000";
 export const EMAIL = "contact@ngimbibusiness.com";
-
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 export function whatsappWithText(text: string) {
   return `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
 }
-
-/* ------------------------------------------------------------------ */
-/*  Navigation                                                         */
-/* ------------------------------------------------------------------ */
 
 export const NAV_LINKS = [
   { href: "#accueil", label: "Accueil" },
@@ -53,15 +43,7 @@ export const NAV_LINKS = [
   { href: "#pourquoi-nous", label: "Pourquoi nous" },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Événement de pré-remplissage (Catalogue ➜ Sourcing)                */
-/* ------------------------------------------------------------------ */
-
 export const PREFILL_EVENT = "nbt:prefill";
-
-/* ------------------------------------------------------------------ */
-/*  Services                                                           */
-/* ------------------------------------------------------------------ */
 
 export const SERVICE_OPTIONS: ServiceOption[] = [
   {
@@ -104,10 +86,6 @@ export const SERVICE_OPTIONS: ServiceOption[] = [
     ],
   },
 ];
-
-/* ------------------------------------------------------------------ */
-/*  Catalogue produits phares                                          */
-/* ------------------------------------------------------------------ */
 
 export const PRODUCTS: Product[] = [
   {
@@ -178,10 +156,6 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Statistiques / Pourquoi nous                                       */
-/* ------------------------------------------------------------------ */
-
 export const STATS: StatItem[] = [
   {
     id: "bureaux",
@@ -223,10 +197,6 @@ export const EXTRA_STATS = [
   { id: "experience", value: 8, suffix: " ans", label: "D'expertise Chine–Afrique", icon: ShieldCheck },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Villes de destination                                              */
-/* ------------------------------------------------------------------ */
-
 export const DESTINATION_CITIES = [
   "Kinshasa (RDC)",
   "Lubumbashi (RDC)",
@@ -242,21 +212,9 @@ export const DESTINATION_CITIES = [
   "Autre ville / à préciser",
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Villes de couverture (Footer)                                      */
-/* ------------------------------------------------------------------ */
-
 export const COVERAGE = {
   china: ["Guangzhou", "Yiwu", "Shenzhen", "Ningbo", "Foshan"],
   africa: ["Kinshasa", "Lubumbashi", "Goma", "Matadi", "Brazzaville"],
 };
 
-/* ------------------------------------------------------------------ */
-/*  Codes de démonstration pour le simulateur de suivi                 */
-/* ------------------------------------------------------------------ */
-
-export const TRACKING_DEMO_CODES = [
-  "NG-2026-CD",
-  "TR-8892-CN",
-  "NBT-LUB-4471",
-];
+export const TRACKING_DEMO_CODES = ["NG-2026-CD", "TR-8892-CN", "NBT-LUB-4471"];

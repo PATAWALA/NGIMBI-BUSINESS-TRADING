@@ -4,27 +4,16 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 
-/**
- * Bouton flottant "Retour en haut".
- *
- * - Apparaît après 600px de scroll
- * - Animation d'entrée/sortie via AnimatePresence
- * - Micro-interactions (hover / tap)
- * - Scroll fluide vers le top au clic
- * - Accessible (aria-label, focus ring)
- */
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
-  /* ----- Détection du scroll ----- */
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 600);
-    onScroll(); // état initial
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ----- Action ----- */
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }

@@ -33,7 +33,6 @@ export default function Hero() {
       id="accueil"
       className="relative overflow-hidden bg-stone-50 pb-40 pt-32 md:pb-52 md:pt-40"
     >
-      {/* ---------- Décor ---------- */}
       <div className="pointer-events-none absolute inset-0 grid-pattern opacity-70" />
       <div className="pointer-events-none absolute -left-32 top-10 h-[26rem] w-[26rem] rounded-full bg-amber-500/15 blur-[120px]" />
       <div className="pointer-events-none absolute -right-24 top-52 h-[22rem] w-[22rem] rounded-full bg-amber-800/10 blur-[110px]" />
@@ -41,7 +40,6 @@ export default function Hero() {
 
       <div className="nbt-container relative">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-          {/* ================= COLONNE GAUCHE ================= */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 18 }}
@@ -96,7 +94,6 @@ export default function Hero() {
               jusqu&apos;à Kinshasa, Lubumbashi ou Goma.
             </motion.p>
 
-            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -122,7 +119,6 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* Trust */}
             <motion.ul
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -141,7 +137,6 @@ export default function Hero() {
             </motion.ul>
           </div>
 
-          {/* ================= COLONNE DROITE — CARTE DE ROUTE ================= */}
           <motion.div
             initial={{ opacity: 0, y: 34, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -169,7 +164,6 @@ export default function Hero() {
                   </span>
                 </div>
 
-                {/* Timeline */}
                 <ol className="relative mt-8 space-y-6 pl-1">
                   <span className="absolute left-[13px] top-2 bottom-2 w-px bg-gradient-to-b from-amber-500/60 via-amber-500/25 to-transparent" />
                   {ROUTE.map((step, i) => (
@@ -198,7 +192,6 @@ export default function Hero() {
                   ))}
                 </ol>
 
-                {/* Mini stats */}
                 <div className="mt-8 grid grid-cols-3 gap-3 border-t border-stone-50/10 pt-6">
                   {[
                     { k: "35-45j", v: "Maritime" },
@@ -218,7 +211,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Badge flottant */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}

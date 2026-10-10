@@ -40,7 +40,6 @@ export default function TrackingSimulator() {
     setLoading(true);
     setResult(null);
 
-    // Simulation d'un appel API
     await new Promise((r) => setTimeout(r, 1200));
 
     setResult(buildTracking(clean));
@@ -61,7 +60,6 @@ export default function TrackingSimulator() {
       <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-amber-600/15 blur-[130px]" />
 
       <div className="nbt-container relative">
-        {/* ---------- En-tête ---------- */}
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/25 bg-amber-500/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-amber-400">
             <ScanLine className="h-3 w-3" />
@@ -77,7 +75,6 @@ export default function TrackingSimulator() {
           </p>
         </div>
 
-        {/* ---------- Barre de recherche ---------- */}
         <div className="mx-auto mt-10 max-w-2xl">
           <form
             onSubmit={handleSubmit}
@@ -115,7 +112,6 @@ export default function TrackingSimulator() {
             </button>
           </form>
 
-          {/* Codes démo */}
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
             <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-500">
               Essayer :
@@ -132,7 +128,6 @@ export default function TrackingSimulator() {
             ))}
           </div>
 
-          {/* Erreur */}
           <AnimatePresence>
             {error && (
               <motion.p
@@ -148,7 +143,6 @@ export default function TrackingSimulator() {
           </AnimatePresence>
         </div>
 
-        {/* ---------- Résultat ---------- */}
         <div className="mx-auto mt-12 max-w-3xl">
           <AnimatePresence mode="wait">
             {loading && (
@@ -180,7 +174,6 @@ export default function TrackingSimulator() {
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="overflow-hidden rounded-[1.75rem] border border-amber-900/25 bg-stone-800/50 shadow-soft-lg backdrop-blur-xl"
               >
-                {/* Header résultat */}
                 <div className="border-b border-stone-50/10 bg-gradient-to-br from-amber-900/25 to-transparent p-6 md:p-7">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
@@ -207,7 +200,6 @@ export default function TrackingSimulator() {
                     </div>
                   </div>
 
-                  {/* Méta */}
                   <div className="mt-6 grid gap-3 sm:grid-cols-3">
                     <MetaBox
                       icon={<MapPin className="h-3.5 w-3.5" />}
@@ -226,7 +218,6 @@ export default function TrackingSimulator() {
                     />
                   </div>
 
-                  {/* Barre de progression */}
                   <div className="mt-6">
                     <div className="h-2 w-full overflow-hidden rounded-full bg-stone-50/10">
                       <motion.div
@@ -239,7 +230,6 @@ export default function TrackingSimulator() {
                   </div>
                 </div>
 
-                {/* Timeline */}
                 <ol className="relative p-6 md:p-7">
                   <span className="absolute left-[2.4rem] top-9 bottom-9 w-px bg-stone-50/10 md:left-[2.65rem]" />
 
@@ -343,8 +333,6 @@ export default function TrackingSimulator() {
     </section>
   );
 }
-
-/* ------------------------------------------------------------------ */
 
 function MetaBox({
   icon,

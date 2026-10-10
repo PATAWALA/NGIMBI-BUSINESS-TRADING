@@ -12,14 +12,9 @@ interface RevealProps {
   children: ReactNode;
   delay?: number;
   className?: string;
-  as?: "div" | "section" | "article" | "li";
 }
 
-export default function Reveal({
-  children,
-  delay = 0,
-  className,
-}: RevealProps) {
+export default function Reveal({ children, delay = 0, className }: RevealProps) {
   return (
     <motion.div
       className={className}

@@ -30,7 +30,6 @@ export default function ProductCatalog() {
       <div className="pointer-events-none absolute right-0 top-20 h-96 w-96 rounded-full bg-amber-600/10 blur-[130px]" />
 
       <div className="nbt-container relative">
-        {/* ---------- En-tête ---------- */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/25 bg-amber-500/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-amber-400">
@@ -58,7 +57,6 @@ export default function ProductCatalog() {
           </div>
         </div>
 
-        {/* ---------- Grille ---------- */}
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.map((product, i) => {
             const Icon = product.icon;
@@ -75,7 +73,6 @@ export default function ProductCatalog() {
                 }}
                 className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-amber-500/15 bg-stone-900/60 shadow-soft-lg backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-amber-500/40"
               >
-                {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={product.image}
@@ -92,7 +89,6 @@ export default function ProductCatalog() {
                   </span>
                 </div>
 
-                {/* Contenu */}
                 <div className="flex flex-1 flex-col p-5 md:p-6">
                   <h3 className="font-display text-[17px] font-extrabold leading-snug text-stone-50">
                     {product.name}
@@ -136,7 +132,6 @@ export default function ProductCatalog() {
           })}
         </div>
 
-        {/* ---------- Bandeau CTA ---------- */}
         <div className="mt-14 overflow-hidden rounded-[1.75rem] border border-amber-500/20 bg-gradient-to-br from-amber-900/40 to-stone-900/40 p-7 backdrop-blur-sm md:p-9">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div>

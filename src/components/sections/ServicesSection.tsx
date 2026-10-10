@@ -39,7 +39,6 @@ export default function ServicesSection() {
       <div className="pointer-events-none absolute -right-32 top-32 h-96 w-96 rounded-full bg-amber-600/10 blur-[120px]" />
 
       <div className="nbt-container relative">
-        {/* ---------- En-tête ---------- */}
         <div className="mx-auto max-w-2xl text-center">
           <span className="nbt-eyebrow">
             <ShieldCheck className="h-3 w-3" />
@@ -56,7 +55,6 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        {/* ---------- Cartes piliers ---------- */}
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
           {PILLARS.map((pillar, i) => {
             const service = SERVICE_OPTIONS[i];
@@ -75,17 +73,14 @@ export default function ServicesSection() {
                 }}
                 className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-amber-900/10 bg-white/85 p-7 shadow-soft backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-amber-600/30 hover:shadow-soft-lg md:p-8"
               >
-                {/* Numéro fantôme */}
                 <span className="pointer-events-none absolute -right-3 -top-6 font-display text-[7rem] font-black leading-none text-amber-900/[0.05] transition-colors duration-500 group-hover:text-amber-700/[0.09]">
                   {pillar.step}
                 </span>
 
-                {/* Icône */}
-                <span className="relative grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 shadow-lg shadow-amber-900/20 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-4deg]">
+                <span className="relative grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 shadow-lg shadow-amber-900/20 transition-transform duration-500 group-hover:scale-110">
                   <Icon className="h-6 w-6 text-amber-50" />
                 </span>
 
-                {/* Contenu */}
                 <div className="relative mt-6 flex-1">
                   <p className="text-[10.5px] font-bold uppercase tracking-[0.22em] text-amber-700">
                     {pillar.subtitle}
@@ -97,7 +92,6 @@ export default function ServicesSection() {
                     {pillar.description}
                   </p>
 
-                  {/* Liste des points (issue de SERVICE_OPTIONS) */}
                   <ul className="mt-5 space-y-2.5 border-t border-amber-900/10 pt-5">
                     {service.points.map((point) => (
                       <li
@@ -113,7 +107,6 @@ export default function ServicesSection() {
                   </ul>
                 </div>
 
-                {/* CTA */}
                 <a
                   href="#sourcing"
                   className="relative mt-6 inline-flex items-center gap-1.5 text-[13px] font-bold text-amber-800 transition-colors hover:text-amber-900"
@@ -126,13 +119,12 @@ export default function ServicesSection() {
           })}
         </div>
 
-        {/* ---------- Bandeau bas : garantie ---------- */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="mt-14 overflow-hidden rounded-[1.75rem] border border-amber-900/10 bg-stone-900 p-7 shadow-soft-lg md:p-9"
+          className="relative mt-14 overflow-hidden rounded-[1.75rem] border border-amber-900/10 bg-stone-900 p-7 shadow-soft-lg md:p-9"
         >
           <div className="pointer-events-none absolute inset-0 grid-pattern-dark opacity-50" />
           <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
@@ -152,10 +144,7 @@ export default function ServicesSection() {
               </div>
             </div>
 
-            <a
-              href="#sourcing"
-              className="nbt-btn-primary shrink-0"
-            >
+            <a href="#sourcing" className="nbt-btn-primary shrink-0">
               Démarrer mon projet
               <ArrowRight className="h-4 w-4" />
             </a>

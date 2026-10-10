@@ -2,9 +2,6 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 
-/**
- * Barre fine en haut de page indiquant la progression du scroll.
- */
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {

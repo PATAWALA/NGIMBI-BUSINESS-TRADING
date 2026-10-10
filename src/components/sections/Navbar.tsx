@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, MessageCircle, Ship, X, Plane } from "lucide-react";
+import { Menu, MessageCircle, Plane, Ship, X } from "lucide-react";
 import { NAV_LINKS, WHATSAPP_URL } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +35,6 @@ export default function Navbar() {
         )}
       >
         <nav className="nbt-container flex items-center justify-between gap-4">
-          {/* ---------- LOGO ---------- */}
           <a href="#accueil" className="group flex shrink-0 items-center gap-3">
             <span className="relative grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 shadow-lg shadow-amber-900/25 transition-transform duration-300 group-hover:scale-105">
               <span className="font-display text-lg font-black text-amber-50">
@@ -55,7 +54,6 @@ export default function Navbar() {
             </span>
           </a>
 
-          {/* ---------- NAV DESKTOP ---------- */}
           <ul className="hidden items-center gap-1 rounded-full border border-amber-900/10 bg-white/60 px-2 py-1.5 backdrop-blur-md lg:flex">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
@@ -69,7 +67,6 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* ---------- ACTIONS ---------- */}
           <div className="flex items-center gap-2.5">
             <span className="hidden items-center gap-1.5 rounded-full border border-amber-900/15 bg-amber-500/10 px-3 py-1.5 text-[11px] font-bold text-amber-800 xl:inline-flex">
               🇨🇳 <Plane className="h-3 w-3" /> 🇨🇩
@@ -97,7 +94,6 @@ export default function Navbar() {
         </nav>
       </header>
 
-      {/* ---------- MENU MOBILE ---------- */}
       <AnimatePresence>
         {open && (
           <motion.div

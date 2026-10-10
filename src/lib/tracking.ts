@@ -80,24 +80,16 @@ function resolveDestination(code: string): string {
   return "Kinshasa, RDC";
 }
 
-function resolveMode(
-  code: string,
-  hash: number,
-): TrackingResult["mode"] {
+function resolveMode(code: string, hash: number): TrackingResult["mode"] {
   if (code.includes("AIR") || code.includes("EXP")) return "Fret aérien";
-  if (code.includes("EXP")) return "Express aérien";
   return hash % 5 === 0 ? "Fret aérien" : "Fret maritime";
 }
 
-/**
- * Génère un résultat de suivi **déterministe** à partir du code saisi.
- * Le même code produira toujours le même état → idéal pour une démo crédible.
- */
 export function buildTracking(rawCode: string): TrackingResult {
   const code = rawCode.trim().toUpperCase();
   const h = hashCode(code);
 
-  const currentIndex = h % STEP_TEMPLATE.length; // 0 → 6
+  const currentIndex = h % STEP_TEMPLATE.length;
   const today = new Date();
   const startOffset = -1 * (currentIndex * 3 + 2);
 
@@ -118,11 +110,9 @@ export function buildTracking(rawCode: string): TrackingResult {
       status,
       date,
       location:
-        index === 5
+        index === 5 || index === 6
           ? resolveDestination(code)
-          : index === 6
-            ? resolveDestination(code)
-            : tpl.location,
+          : tpl.location,
     };
   });
 
